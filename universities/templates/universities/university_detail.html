@@ -1,0 +1,80 @@
+{% extends 'universities/base.html' %}
+
+{% block title %}{{ university.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- Название университета -->
+    <h1 class="mb-4 text-center">{{ university.name }}</h1>
+
+    <!-- Основная информация -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Основная информация</h5>
+            <p><strong>Расположение:</strong> {{ university.location }}</p>
+            <p><strong>Год основания:</strong> {{ university.founded_year }}</p>
+            <p><strong>Описание:</strong> {{ university.description|default:"Описание отсутствует." }}</p>
+            <p><strong>Веб-сайт:</strong> 
+                <a href="{{ university.website_url }}" target="_blank">{{ university.website_url }}</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Программы и экзамены -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Программы и требования к экзаменам</h5>
+            {% if university.majors.exists %}
+                <ul class="list-group">
+                    {% for major in university.majors.all %}
+                        <li class="list-group-item">
+                            <strong>{{ major.major_name }}</strong> ({{ major.degree_type }})<br>
+                            <small>Длительность: {{ major.duration }} года</small><br>
+                            <small>Стоимость обучения: ${{ major.tuition_fee }}</small>
+                            <hr>
+                            <h6>Требуемые экзамены:</h6>
+                            {% if major.exam_requirements.exists %}
+                                <ul>
+                                    {% for requirement in major.exam_requirements.all %}
+                                        <li>
+                                            <strong>{{ requirement.exam.exam_name }}</strong>: Минимальный балл - {{ requirement.min_score }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p class="text-muted">Требования к экзаменам отсутствуют.</p>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-muted">Программы отсутствуют.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Дедлайны -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Дедлайны подачи документов</h5>
+            {% if university.application_deadlines.exists %}
+                <ul class="list-group">
+                    {% for deadline in university.application_deadlines.all %}
+                        <li class="list-group-item">
+                            <strong>{{ deadline.deadline.name }}</strong>: 
+                            {{ deadline.start_date|date:"d.m.Y" }} - {{ deadline.end_date|date:"d.m.Y" }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-muted">Дедлайны отсутствуют.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Кнопка возврата -->
+    <div class="text-center mt-4">
+        <a href="{% url 'universities:university_list' %}" class="btn btn-secondary w-100">Вернуться к списку университетов</a>
+    </div>
+</div>
+{% endblock %}

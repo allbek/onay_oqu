@@ -1,0 +1,62 @@
+{% extends 'universities/base.html' %}
+
+{% block title %}Поиск университетов{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Universities filters</h1>
+
+<!-- Форма поиска и фильтров -->
+<form method="get" action="{% url 'universities:university_list' %}">
+    <div class="search-bar mb-4 d-flex align-items-center w-100">
+        <!-- Поле поиска -->
+        <input type="text" name="q" class="form-control me-2" placeholder="Search universities, programs..." value="{{ query }}">
+        <!-- Кнопка поиска -->
+        <button type="submit" class="btn btn-dark">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+
+    <!-- Фильтры по локации -->
+    <h5 class="mb-3">Browse by Location</h5>
+    <div class="row mb-4">
+        {% for loc in locations %}
+        <div class="col-6 col-md-4 mb-2">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="location" value="{{ loc }}" id="location-{{ forloop.counter }}" 
+                       {% if loc in selected_locations %}checked{% endif %}>
+                <label class="form-check-label" for="location-{{ forloop.counter }}">
+                    {{ loc }}
+                </label>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Фильтры по программам -->
+    <h5 class="mb-3">Browse by Program</h5>
+    <div class="row">
+        {% for program in programs %}
+        <div class="col-6 col-md-4 mb-2">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="major" value="{{ program }}" id="major-{{ forloop.counter }}" 
+                       {% if program in selected_majors %}checked{% endif %}>
+                <label class="form-check-label" for="major-{{ forloop.counter }}">
+                    {{ program }}
+                </label>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Фильтры по экзаменам -->
+    <h5 class="mb-3">Filter by Exams</h5>
+    <div class="row mb-4">
+        {% for exam in exams %}
+        <div class="col-6 col-md-4 mb-2">
+            <label for="exam-{{ exam.id }}" class="form-label">{{ exam.exam_name }}</label>
+            <input type="number" name="exam_{{ exam.id }}" id="exam-{{ exam.id }}" class="form-control" placeholder="Enter score">
+        </div>
+        {% endfor %}
+    </div>
+</form>
+{% endblock %}

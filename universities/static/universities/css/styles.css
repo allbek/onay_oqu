@@ -1,0 +1,130 @@
+.container {
+    margin-bottom: 80px; /* Увеличьте значение, если нужно больше отступа */
+}
+
+/* Стили для кнопок */
+body {
+    margin-bottom: 60px; /* Отступ для нижней навигационной панели */
+}
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.bottom-nav .nav-item {
+    text-align: center;
+    flex: 1;
+}
+.bottom-nav .nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.bottom-nav .nav-link i {
+    font-size: 20px; /* Размер иконки */
+    margin-bottom: 5px; /* Отступ между иконкой и текстом */
+}
+
+.bottom-nav .nav-link.active {
+    color: #000;
+    font-weight: bold;
+}
+
+.bottom-nav .nav-link:hover {
+    color: #000;
+}
+
+/* Убираем ограничения по ширине */
+.container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Стили для строки поиска */
+.search-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0; /* Убираем внутренние отступы */
+}
+
+.search-bar form {
+    display: flex;
+    width: 100%;
+    margin: 0; /* Убираем внешние отступы */
+}
+
+.search-bar input {
+    flex: 1;
+    border-radius: 10px; /* Скруглённые углы */
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    margin: 0; /* Убираем отступы */
+}
+
+.search-bar button {
+    border-radius: 10px; /* Скруглённые углы */
+    padding: 10px 20px;
+    font-size: 14px;
+    margin-left: 0; /* Убираем отступ между кнопкой и полем */
+    border: 1px solid #ddd;
+    background-color: #000;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Стили для кнопок */
+.btn {
+    border-radius: 10px; /* Скруглённые углы */
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-dark {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+}
+
+.btn-outline-dark:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+/* Стили для чекбоксов */
+.form-check-input {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.form-check-label {
+    font-size: 14px;
+    font-weight: 500;
+}

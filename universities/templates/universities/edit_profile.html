@@ -1,0 +1,71 @@
+{% extends 'universities/base.html' %}
+
+{% block title %}Редактировать профиль{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Редактировать профиль</h1>
+
+<form method="post" class="needs-validation" novalidate>
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="first_name" class="form-label">Имя</label>
+        <input type="text" name="first_name" id="first_name" class="form-control" value="{{ user.first_name }}" placeholder="Введите ваше имя" required>
+        <div class="invalid-feedback">
+            Пожалуйста, введите ваше имя.
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="last_name" class="form-label">Фамилия</label>
+        <input type="text" name="last_name" id="last_name" class="form-control" value="{{ user.last_name }}" placeholder="Введите вашу фамилию" required>
+        <div class="invalid-feedback">
+            Пожалуйста, введите вашу фамилию.
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="school_name" class="form-label">Место учебы</label>
+        <input type="text" name="school_name" id="school_name" class="form-control" value="{{ profile.school_name }}" placeholder="Введите место учебы" required>
+        <div class="invalid-feedback">
+            Пожалуйста, введите место учебы.
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="school_type" class="form-label">Тип учебного заведения</label>
+        <select name="school_type" id="school_type" class="form-select" required>
+            <option value="" disabled>Выберите тип</option>
+            <option value="high_school" {% if profile.school_type == "high_school" %}selected{% endif %}>Старшая школа</option>
+            <option value="middle_school" {% if profile.school_type == "middle_school" %}selected{% endif %}>Средняя школа</option>
+            <option value="university" {% if profile.school_type == "university" %}selected{% endif %}>Университет</option>
+            <option value="other" {% if profile.school_type == "other" %}selected{% endif %}>Другое</option>
+        </select>
+        <div class="invalid-feedback">
+            Пожалуйста, выберите тип учебного заведения.
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="graduation_date" class="form-label">Дата выпуска</label>
+        <input type="date" name="graduation_date" id="graduation_date" class="form-control" value="{{ profile.graduation_date|date:'Y-m-d' }}" required>
+        <div class="invalid-feedback">
+            Пожалуйста, выберите дату выпуска.
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Сохранить изменения</button>
+    <a href="{% url 'universities:profile' %}" class="btn btn-secondary w-100 mt-2">Отмена</a>
+</form>
+
+<script>
+    // Включение валидации Bootstrap
+    (function () {
+        'use strict'
+        const forms = document.querySelectorAll('.needs-validation')
+        Array.from(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
+{% endblock %}

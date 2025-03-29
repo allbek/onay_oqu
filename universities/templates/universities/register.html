@@ -1,0 +1,101 @@
+{% extends 'universities/base.html' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+<h1 class="mb-4 text-center">Регистрация</h1>
+<form method="post" class="needs-validation" novalidate>
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="username" class="form-label">Имя пользователя</label>
+        <input type="text" name="username" id="username" class="form-control" placeholder="Введите имя пользователя" required>
+        <div class="invalid-feedback">
+            Пожалуйста, введите имя пользователя.
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" name="email" id="email" class="form-control" placeholder="Введите ваш email" required>
+        <div class="invalid-feedback">
+            Пожалуйста, введите корректный email.
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="first_name" class="form-label">Имя</label>
+        <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Введите ваше имя" required>
+        <div class="invalid-feedback">
+            Пожалуйста, введите ваше имя.
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="last_name" class="form-label">Фамилия</label>
+        <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Введите вашу фамилию" required>
+        <div class="invalid-feedback">
+            Пожалуйста, введите вашу фамилию.
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="school_name" class="form-label">Место учебы</label>
+        <input type="text" name="school_name" id="school_name" class="form-control" placeholder="Введите место учебы" required>
+        <div class="invalid-feedback">
+            Пожалуйста, введите место учебы.
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="school_type" class="form-label">Тип учебного заведения</label>
+        <select name="school_type" id="school_type" class="form-select" required>
+            <option value="" disabled selected>Выберите тип</option>
+            <option value="high_school">Старшая школа</option>
+            <option value="middle_school">Средняя школа</option>
+            <option value="university">Университет</option>
+            <option value="other">Другое</option>
+        </select>
+        <div class="invalid-feedback">
+            Пожалуйста, выберите тип учебного заведения.
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="graduation_date" class="form-label">Дата выпуска</label>
+        <input type="date" name="graduation_date" id="graduation_date" class="form-control" required>
+        <div class="invalid-feedback">
+            Пожалуйста, выберите дату выпуска.
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="password1" class="form-label">Пароль</label>
+        <input type="password" name="password1" id="password1" class="form-control" placeholder="Введите пароль" required>
+        <div class="invalid-feedback">
+            Пожалуйста, введите пароль.
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="password2" class="form-label">Подтверждение пароля</label>
+        <input type="password" name="password2" id="password2" class="form-control" placeholder="Повторите пароль" required>
+        <div class="invalid-feedback">
+            Пожалуйста, подтвердите пароль.
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
+</form>
+
+<p class="mt-3 text-center">
+    Уже есть аккаунт? <a href="{% url 'universities:login' %}">Войти</a>
+</p>
+
+<script>
+    // Включение валидации Bootstrap
+    (function () {
+        'use strict'
+        const forms = document.querySelectorAll('.needs-validation')
+        Array.from(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'universities/base.html' %}
+
+{% block title %}Избранные университеты{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Избранные университеты</h1>
+
+{% if saved_universities %}
+<div class="row">
+    {% for saved in saved_universities %}
+    <div class="col-12 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ saved.university.name }}</h5>
+                <p class="card-text text-muted">{{ saved.university.location }}</p>
+                <p class="card-text">
+                    <strong>Application Deadline:</strong> 
+                    {% for deadline in saved.university.application_deadlines.all %}
+                        <span class="text-danger">{{ deadline.end_date|date:"M d, Y" }}</span>
+                    {% empty %}
+                        Not available
+                    {% endfor %}
+                </p>
+                <p class="card-text">
+                    <strong>Programs:</strong> 
+                    {% for major in saved.university.majors.all %}
+                        {{ major.major_name }}{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                        Not available
+                    {% endfor %}
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <!-- Кнопка "Remove" -->
+                        <form method="post" action="{% url 'universities:remove_favorite' saved.university.id %}" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-dark btn-sm w-100">Remove</button>
+                        </form>
+                    </div>
+                    <!-- Кнопка "View Details" -->
+                    <a href="{% url 'universities:university_detail' saved.university.id %}" class="btn btn-secondary btn-sm">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+    <p class="text-muted">У вас нет избранных университетов.</p>
+{% endif %}
+{% endblock %}

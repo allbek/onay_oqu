@@ -32,7 +32,8 @@ CSRF_TRUSTED_ORIGINS = [
     'https://onayoqu-production.up.railway.app',
 ]
 
-
+CSRF_COOKIE_SECURE = True  # Обязательно, если используешь HTTPS
+SESSION_COOKIE_SECURE = True
 # Application definition
 
 INSTALLED_APPS = [

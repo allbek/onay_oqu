@@ -6,6 +6,8 @@ from django.contrib.auth.views import PasswordChangeView, LogoutView
 app_name = 'universities'
 
 urlpatterns = [
+    path('', views.welcome_page, name='welcome_page'),  # Приветственная страница
+    path('universities/', views.university_list, name='university_list'),  # Пример другого маршрута
     path('list/', views.university_list, name='university_list'),
     path('search/', views.university_search, name='university_search'),
     path('favorite/remove/<int:university_id>/', views.remove_favorite, name='remove_favorite'),

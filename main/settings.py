@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ["onayoqu-production.up.railway.app", "onayoqu.com", "0.0.0.0", 
 CSRF_TRUSTED_ORIGINS = ["https://onayoqu-production.up.railway.app", "https://onayoqu.com"]
 
 
-CSRF_COOKIE_SECURE = True  # Обязательно, если используешь HTTPS
+CSRF_COOKIE_SECURE = False  # Обязательно, если используешь HTTPS
 SESSION_COOKIE_SECURE = True
 # Application definition
 

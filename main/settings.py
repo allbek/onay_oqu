@@ -26,11 +26,10 @@ SECRET_KEY = 'django-insecure-o0fgyscq6i$rqft*g@z@m-!ds#yv3y$c7fjbgnsp730$2@+u2d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["onayoqu-production.up.railway.app"]
+ALLOWED_HOSTS = ["onayoqu-production.up.railway.app", "onayoqu.com", "0.0.0.0", "localhost"]
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://onayoqu-production.up.railway.app',
-]
+CSRF_TRUSTED_ORIGINS = ["https://onayoqu-production.up.railway.app", "https://onayoqu.com"]
+
 
 CSRF_COOKIE_SECURE = True  # Обязательно, если используешь HTTPS
 SESSION_COOKIE_SECURE = True
@@ -50,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',

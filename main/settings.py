@@ -28,6 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["onayoqu-production.up.railway.app"]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://onayoqu-production.up.railway.app',
+]
+
 
 # Application definition
 

@@ -50,6 +50,39 @@
     </button>
 </div>
 
+<!-- Модальное окно -->
+<div class="modal fade" id="addExamModal" tabindex="-1" aria-labelledby="addExamModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addExamModalLabel">Добавить результат экзамена</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="exam" class="form-label">Экзамен</label>
+                        <select name="exam" id="exam" class="form-select" required>
+                            <option value="" disabled selected>Выберите экзамен</option>
+                            {% for exam in exams %}
+                                <option value="{{ exam.id }}">{{ exam.exam_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="invalid-feedback">Пожалуйста, выберите экзамен.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="score" class="form-label">Результат</label>
+                        <input type="number" name="score" id="score" class="form-control" placeholder="Введите ваш результат" required>
+                        <div class="invalid-feedback">Пожалуйста, введите результат экзамена.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Добавить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Настройки аккаунта -->
 <h2 class="mt-5">Настройки аккаунта</h2>
 <div class="list-group">

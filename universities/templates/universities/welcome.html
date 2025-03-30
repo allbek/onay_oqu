@@ -1,0 +1,11 @@
+{% extends 'universities/base.html' %}
+
+{% block title %}Добро пожаловать{% endblock %}
+
+{% block content %}
+<div class="text-center mt-5">
+    <h1>Добро пожаловать в Onay Oqu!</h1>
+    <p class="lead mt-3">Ваш помощник в выборе университетов и программ обучения.</p>
+    <a href="{% url 'universities:university_list' %}" class="btn btn-primary mt-4">Перейти к списку университетов</a>
+</div>
+{% endblock %}

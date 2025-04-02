@@ -26,9 +26,9 @@ SECRET_KEY = 'django-insecure-o0fgyscq6i$rqft*g@z@m-!ds#yv3y$c7fjbgnsp730$2@+u2d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["onayoqu-production.up.railway.app", "onayoqu.com", "0.0.0.0", "localhost"]
+ALLOWED_HOSTS = ["onayoqu-production.up.railway.app", "onayoqu.com", "0.0.0.0", "localhost", "127.0.0.1"]
 
-CSRF_TRUSTED_ORIGINS = ["https://onayoqu-production.up.railway.app", "https://onayoqu.com"]
+CSRF_TRUSTED_ORIGINS = ["https://onayoqu-production.up.railway.app", "https://onayoqu.com", "http://127.0.0.1/"]
 
 
 CSRF_COOKIE_SECURE = True # Обязательно, если используешь HTTPS
@@ -122,8 +122,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # Если у тебя есть статические файлы в папке проекта
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # Папка, куда Django соберет все статики
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "staticfiles")]  # Папка для ваших статических файлов
+STATIC_ROOT = os.path.join(BASE_DIR, "static")  # Папка, куда Django соберет все статики
 
 
 # Default primary key field type

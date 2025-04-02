@@ -26,9 +26,9 @@ SECRET_KEY = 'django-insecure-o0fgyscq6i$rqft*g@z@m-!ds#yv3y$c7fjbgnsp730$2@+u2d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["onayoqu-production.up.railway.app", "onayoqu.com", "0.0.0.0", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["onayoqu-production.up.railway.app", "www.onayoqu.com", "0.0.0.0", "localhost", "127.0.0.1"]
 
-CSRF_TRUSTED_ORIGINS = ["https://onayoqu-production.up.railway.app", "https://onayoqu.com", "http://127.0.0.1/"]
+CSRF_TRUSTED_ORIGINS = ["https://onayoqu-production.up.railway.app", "https://www.onayoqu.com", "http://127.0.0.1/"]
 
 
 CSRF_COOKIE_SECURE = True # Обязательно, если используешь HTTPS

@@ -6,9 +6,6 @@
 <h1>Вход</h1>
 <form method="post">
     {% csrf_token %}
-    {% if error %}
-        <p class="text-danger">{{ error }}</p>
-    {% endif %}
     <div class="mb-3">
         <label for="username" class="form-label">Имя пользователя</label>
         <input type="text" name="username" id="username" class="form-control" required>
